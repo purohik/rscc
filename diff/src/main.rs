@@ -1,6 +1,6 @@
 use std::io;
 
-fn longest_common_subsequence(text1: String, text2: String) -> String {
+pub fn longest_common_subsequence(text1: String, text2: String) -> String {
     let input1_len = text1.len();
     let input2_len = text2.len();
 
@@ -60,4 +60,28 @@ fn main() {
 
     let lcs_result = longest_common_subsequence(input1, input2);
     println!("The longest common subsequence is: {}", lcs_result);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_longest_common_subsequence() {
+        // Complete match
+        assert_eq!(
+            longest_common_subsequence("abcde".to_string(), "abcde".to_string()),
+            "abcde".to_string()
+        );
+        // Partial match
+        assert_eq!(
+            longest_common_subsequence("abcde".to_string(), "aced".to_string()),
+            "ace".to_string()
+        );
+        // No match
+        assert_eq!(
+            longest_common_subsequence("abcde".to_string(), "wxyz".to_string()),
+            "".to_string()
+        );
+    }
 }
